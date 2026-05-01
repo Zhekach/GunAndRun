@@ -1,0 +1,3 @@
+﻿Build path: D:/Projects/IJuniorUnity/GunAndRun/Builds
+Build number: 1
+PluginYG version: 2.0091
