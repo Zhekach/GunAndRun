@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3962798882942471415}
   - component: {fileID: 250260711946572840}
   - component: {fileID: 7001000000000000001}
+  - component: {fileID: 7001000000000000002}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -167,6 +168,24 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: 82f4e94dab2946488c24f94576edf293, type: 2}
   _shootPoint: {fileID: 5697987125041072404}
   _fireRateMultiplier: 1
+--- !u!114 &7001000000000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151036737465284632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24aa095ee57649e9afe097506fc9496b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 1.35, z: 0}
+  _size: {x: 1.2, y: 0.12}
+  _thickness: 0.02
+  _backgroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.85}
+  _fillColor: {r: 0.15, g: 0.9, b: 0.25, a: 1}
+  _hideWhenFull: 0
 --- !u!1 &9154348049197024140
 GameObject:
   m_ObjectHideFlags: 0

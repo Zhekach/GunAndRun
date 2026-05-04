@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 3001000000000000002}
   - component: {fileID: 3001000000000000003}
   - component: {fileID: 3001000000000000004}
+  - component: {fileID: 3001000000000000005}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bbe1476049430ba071fd151d883dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardSpeed: 6
+  _forwardSpeed: 4
   _sideSpeed: 5
   _xLimit: 3
 --- !u!114 &3001000000000000001
@@ -302,3 +303,21 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: cf57da1525a94373a1b86a398af2aaf5, type: 2}
   _shootPoint: {fileID: 0}
   _fireRateMultiplier: 1
+--- !u!114 &3001000000000000005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013881643648708398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24aa095ee57649e9afe097506fc9496b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 1.35, z: 0}
+  _size: {x: 1.2, y: 0.12}
+  _thickness: 0.02
+  _backgroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.85}
+  _fillColor: {r: 0.15, g: 0.9, b: 0.25, a: 1}
+  _hideWhenFull: 0
