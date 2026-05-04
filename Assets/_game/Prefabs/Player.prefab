@@ -106,6 +106,9 @@ GameObject:
   - component: {fileID: 149371473925247370}
   - component: {fileID: 873326750877115747}
   - component: {fileID: 1225312265081914600}
+  - component: {fileID: 3001000000000000001}
+  - component: {fileID: 3001000000000000002}
+  - component: {fileID: 3001000000000000003}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -243,3 +246,42 @@ MonoBehaviour:
   _forwardSpeed: 6
   _sideSpeed: 5
   _xLimit: 3
+--- !u!114 &3001000000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013881643648708398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2461f81a84a24b50a3d41878dae37ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _destroyOnDeath: 1
+--- !u!114 &3001000000000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013881643648708398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd560223565c4ec4bb3fef7c71100f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+--- !u!114 &3001000000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013881643648708398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b750c58b94144f4aba7465c49fd0bc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
