@@ -7,9 +7,10 @@ public class Weapon : MonoBehaviour
     [SerializeField, Min(0.01f)] private float _fireRateMultiplier = 1f;
 
     private float _cooldown;
+    private float _fireRateMultiplierBonus;
 
     public WeaponConfig Config => _config;
-    public float FireRateMultiplier => _fireRateMultiplier;
+    public float FireRateMultiplier => Mathf.Max(0.01f, _fireRateMultiplier + _fireRateMultiplierBonus);
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class Weapon : MonoBehaviour
             return;
 
         Shoot();
-        _cooldown = 1f / (_config.ShotsPerSecond * _fireRateMultiplier);
+        _cooldown = 1f / (_config.ShotsPerSecond * FireRateMultiplier);
     }
 
     public void SetConfig(WeaponConfig config)
@@ -45,6 +46,11 @@ public class Weapon : MonoBehaviour
     public void AddFireRateMultiplier(float value)
     {
         SetFireRateMultiplier(_fireRateMultiplier + value);
+    }
+
+    public void AddFireRateMultiplierBonus(float value)
+    {
+        _fireRateMultiplierBonus += value;
     }
 
     private void Shoot()

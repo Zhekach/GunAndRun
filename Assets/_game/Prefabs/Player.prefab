@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 3001000000000000003}
   - component: {fileID: 3001000000000000004}
   - component: {fileID: 3001000000000000005}
+  - component: {fileID: 8623128561612200063}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -321,3 +322,17 @@ MonoBehaviour:
   _backgroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.85}
   _fillColor: {r: 0.15, g: 0.9, b: 0.25, a: 1}
   _hideWhenFull: 0
+--- !u!114 &8623128561612200063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013881643648708398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31431162adee498487768f827055735c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 3001000000000000001}
+  _weapon: {fileID: 3001000000000000004}
