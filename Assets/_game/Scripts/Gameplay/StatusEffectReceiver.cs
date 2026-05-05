@@ -52,8 +52,15 @@ public class StatusEffectReceiver : MonoBehaviour
 
         ApplyInstantChanges(config, source);
 
-        if (config.Duration <= 0f || HasTemporaryChanges(config) == false)
+        if (HasTemporaryChanges(config) == false)
         {
+            Applied?.Invoke(config);
+            return;
+        }
+
+        if (config.Duration <= 0f)
+        {
+            ApplyPermanentChanges(config, source);
             Applied?.Invoke(config);
             return;
         }
@@ -89,6 +96,15 @@ public class StatusEffectReceiver : MonoBehaviour
         {
             if (change.IsTemporary)
                 ApplyChange(change, gameObject);
+        }
+    }
+
+    private void ApplyPermanentChanges(StatusEffectConfig config, GameObject source)
+    {
+        foreach (StatusEffectChange change in config.Changes)
+        {
+            if (change.IsTemporary)
+                ApplyChange(change, source);
         }
     }
 
