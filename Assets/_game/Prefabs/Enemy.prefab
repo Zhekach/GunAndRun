@@ -185,7 +185,7 @@ MonoBehaviour:
   _thickness: 0.02
   _backgroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.85}
   _fillColor: {r: 0.15, g: 0.9, b: 0.25, a: 1}
-  _hideWhenFull: 0
+  _hideWhenFull: 1
 --- !u!1 &9154348049197024140
 GameObject:
   m_ObjectHideFlags: 0
