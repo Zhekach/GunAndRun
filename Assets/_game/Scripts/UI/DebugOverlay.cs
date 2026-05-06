@@ -15,17 +15,20 @@ public class DebugOverlay : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private bool _isVisibleInAwake;
 
+    private IMoneyService _money;
+    
     private PlayerRunner _player;
     private Health _health;
     private Weapon _weapon;
     private float _nextRefreshTime;
 
     [Inject]
-    private void Construct(PlayerRunner player, Health health, Weapon weapon)
+    private void Construct(PlayerRunner player, Health health, Weapon weapon, IMoneyService money)
     {
         _player = player;
         _health = health;
         _weapon = weapon;
+        _money = money;
     }
 
     private void Awake()
@@ -75,12 +78,18 @@ public class DebugOverlay : MonoBehaviour
 
         _builder.AppendLine($"HP: {FormatHealth()}");
         _builder.AppendLine($"Fire rate: {FormatFireRate()}");
+        _builder.AppendLine($"Money: {FormatMoney()}");
         _builder.AppendLine($"Weapon: {FormatWeapon()}");
         _builder.AppendLine($"Position: {FormatPosition(_player.transform.position)}");
 
         _text.text = _builder.ToString();
     }
 
+    private static string FormatPosition(Vector3 position)
+    {
+        return $"{position.x:0.##}, {position.y:0.##}, {position.z:0.##}";
+    }
+    
     private string FormatHealth()
     {
         return _health != null ? $"{_health.CurrentHealth}/{_health.MaxHealth}" : "not found";
@@ -96,8 +105,8 @@ public class DebugOverlay : MonoBehaviour
         return _weapon != null && _weapon.Config != null ? _weapon.Config.name : "not found";
     }
 
-    private static string FormatPosition(Vector3 position)
+    private string FormatMoney()
     {
-        return $"{position.x:0.##}, {position.y:0.##}, {position.z:0.##}";
+        return _money.Balance.ToString();
     }
 }
