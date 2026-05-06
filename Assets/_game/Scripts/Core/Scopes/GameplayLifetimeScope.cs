@@ -4,14 +4,18 @@ using VContainer.Unity;
 
 public class GameplayLifetimeScope : LifetimeScope
 {
+    [SerializeField] private LevelUI _levelUI;
+    
     [SerializeField] private DebugOverlay _debugOverlay;
     [SerializeField] private DebugMoney _debugMoney;
+    
     [SerializeField] private PlayerRunner _player;
     [SerializeField] private Health _playerHealth;
     [SerializeField] private Weapon _playerWeapon;
 
     protected override void Configure(IContainerBuilder builder)
     {
+        builder.RegisterComponent(_levelUI);
         builder.RegisterComponent(_debugOverlay);
         builder.RegisterComponent(_debugMoney);
         builder.RegisterComponent(_player);
