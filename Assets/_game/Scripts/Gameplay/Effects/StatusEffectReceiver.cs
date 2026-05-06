@@ -79,6 +79,11 @@ public class StatusEffectReceiver : MonoBehaviour
         Applied?.Invoke(config);
     }
 
+    public void Apply(StatusEffectTarget target, float value, GameObject source = null)
+    {
+        ApplyChange(target, value, source);
+    }
+
     private void ApplyInstantChanges(StatusEffectConfig config, GameObject source)
     {
         foreach (StatusEffectChange change in config.Changes)
