@@ -1,21 +1,20 @@
 using UnityEngine;
 
-public class StatusEffectPickup : MonoBehaviour
+public class StatusEffectPickup : PickableItem
 {
     [SerializeField] private StatusEffectConfig _effect;
 
-    private void OnTriggerEnter(Collider other)
+    public override bool Pick(GameObject picker)
     {
         if (_effect == null)
-            return;
+            return false;
 
-        StatusEffectReceiver receiver = other.GetComponentInParent<StatusEffectReceiver>();
+        StatusEffectReceiver receiver = picker.GetComponentInParent<StatusEffectReceiver>();
 
         if (receiver == null)
-            return;
+            return false;
 
         receiver.Apply(_effect, gameObject);
-
-        Destroy(gameObject);
+        return true;
     }
 }

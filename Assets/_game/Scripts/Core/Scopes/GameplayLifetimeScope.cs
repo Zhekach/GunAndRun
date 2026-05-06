@@ -17,5 +17,15 @@ public class GameplayLifetimeScope : LifetimeScope
         builder.RegisterComponent(_player);
         builder.RegisterComponent(_playerHealth);
         builder.RegisterComponent(_playerWeapon);
+        builder.RegisterBuildCallback(InjectDropOnDeathComponents);
+    }
+
+    //Todo refactor По хорошему надо создать фабрику
+    private void InjectDropOnDeathComponents(IObjectResolver resolver)
+    {
+        DropOnDeath[] dropOnDeathComponents = FindObjectsOfType<DropOnDeath>(true);
+
+        for (int i = 0; i < dropOnDeathComponents.Length; i++)
+            resolver.Inject(dropOnDeathComponents[i]);
     }
 }
