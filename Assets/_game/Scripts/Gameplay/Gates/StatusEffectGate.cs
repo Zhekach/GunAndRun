@@ -9,6 +9,9 @@ public class StatusEffectGate : MonoBehaviour, IDamageable
     [SerializeField] private bool _canIncreaseValue = true;
     [SerializeField] private float _increasePerHit = 0.1f;
     [SerializeField] private float _maxValue = 1.2f;
+    [SerializeField] private Renderer _renderer;
+    [SerializeField] private Material _positiveValueMaterial;
+    [SerializeField] private Material _negativeValueMaterial;
     [SerializeField] private TMP_Text _label;
     [SerializeField] private string _valueFormat = "+0.##;-0.##;0";
 
@@ -25,7 +28,10 @@ public class StatusEffectGate : MonoBehaviour, IDamageable
         if (_label == null)
             _label = GetComponentInChildren<TMP_Text>();
 
-        UpdateLabel();
+        if (_renderer == null)
+            _renderer = GetComponentInChildren<Renderer>();
+
+        UpdateView();
     }
 
     private void OnValidate()
@@ -36,7 +42,7 @@ public class StatusEffectGate : MonoBehaviour, IDamageable
         if (_increasePerHit < 0f)
             _increasePerHit = 0f;
 
-        UpdateLabel();
+        UpdateView();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,7 +62,24 @@ public class StatusEffectGate : MonoBehaviour, IDamageable
             return;
 
         _value = Mathf.Min(_maxValue, _value + _increasePerHit);
+        UpdateView();
+    }
+
+    private void UpdateView()
+    {
+        UpdateMaterial();
         UpdateLabel();
+    }
+
+    private void UpdateMaterial()
+    {
+        if (_renderer == null)
+            return;
+
+        Material material = _value < 0f ? _negativeValueMaterial : _positiveValueMaterial;
+
+        if (material != null)
+            _renderer.sharedMaterial = material;
     }
 
     private void UpdateLabel()

@@ -13,6 +13,7 @@ public class DebugOverlay : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject _panel;
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private bool _isVisibleInAwake;
 
     private PlayerRunner _player;
     private Health _health;
@@ -29,7 +30,7 @@ public class DebugOverlay : MonoBehaviour
 
     private void Awake()
     {
-        SetVisible(false);
+        SetVisible(_isVisibleInAwake);
     }
 
     private void Update()
