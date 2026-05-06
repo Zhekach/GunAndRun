@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
 
     public WeaponConfig Config => _config;
     public float FireRateMultiplier => Mathf.Max(0.01f, _fireRateMultiplier + _fireRateMultiplierBonus);
+    public float ShotsPerSecond => _config != null ? _config.ShotsPerSecond * FireRateMultiplier : 0f;
+    public float Cooldown => Mathf.Max(0f, _cooldown);
 
     private void Awake()
     {
