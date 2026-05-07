@@ -7,5 +7,6 @@ public class GameLifetimeScope : LifetimeScope
     {
         builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
         builder.Register<IMoneyService, MoneyService>(Lifetime.Singleton);
+        builder.Register<ILevelProgressService, LevelProgressService>(Lifetime.Singleton);
     }
 }

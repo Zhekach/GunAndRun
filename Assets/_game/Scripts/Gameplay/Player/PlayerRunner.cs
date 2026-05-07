@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using VContainer;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerRunner : MonoBehaviour
@@ -8,6 +9,13 @@ public class PlayerRunner : MonoBehaviour
     [SerializeField] private float _xLimit = 3f;
 
     private CharacterController _controller;
+    private ILevelStateProvider _levelState;
+
+    [Inject]
+    private void Construct(ILevelStateProvider levelState)
+    {
+        _levelState = levelState;
+    }
 
     private void Awake()
     {
@@ -16,6 +24,9 @@ public class PlayerRunner : MonoBehaviour
 
     private void Update()
     {
+        if (_levelState != null && _levelState.IsGameplayRunning == false)
+            return;
+
         float horizontal = Input.GetAxis("Horizontal");
 
         Vector3 move = new Vector3(

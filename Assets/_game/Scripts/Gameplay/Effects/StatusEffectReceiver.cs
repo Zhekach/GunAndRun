@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer;
 
 public class StatusEffectReceiver : MonoBehaviour
 {
@@ -8,9 +9,16 @@ public class StatusEffectReceiver : MonoBehaviour
     [SerializeField] private Weapon _weapon;
 
     private readonly List<ActiveStatusEffect> _activeEffects = new List<ActiveStatusEffect>();
+    private ILevelStateProvider _levelState;
 
     public event Action<StatusEffectConfig> Applied;
     public event Action<StatusEffectConfig> Ended;
+
+    [Inject]
+    private void Construct(ILevelStateProvider levelState)
+    {
+        _levelState = levelState;
+    }
 
     private void Awake()
     {
@@ -23,6 +31,9 @@ public class StatusEffectReceiver : MonoBehaviour
 
     private void Update()
     {
+        if (_levelState != null && _levelState.IsGameplayRunning == false)
+            return;
+
         for (int i = _activeEffects.Count - 1; i >= 0; i--)
         {
             ActiveStatusEffect effect = _activeEffects[i];

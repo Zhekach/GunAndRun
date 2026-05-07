@@ -1,4 +1,5 @@
 using UnityEngine;
+using VContainer;
 
 public class Weapon : MonoBehaviour
 {
@@ -8,11 +9,18 @@ public class Weapon : MonoBehaviour
 
     private float _cooldown;
     private float _fireRateMultiplierBonus;
+    private ILevelStateProvider _levelState;
 
     public WeaponConfig Config => _config;
     public float FireRateMultiplier => Mathf.Max(0.01f, _fireRateMultiplier + _fireRateMultiplierBonus);
     public float ShotsPerSecond => _config != null ? _config.ShotsPerSecond * FireRateMultiplier : 0f;
     public float Cooldown => Mathf.Max(0f, _cooldown);
+
+    [Inject]
+    private void Construct(ILevelStateProvider levelState)
+    {
+        _levelState = levelState;
+    }
 
     private void Awake()
     {
@@ -22,6 +30,9 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if (_levelState != null && _levelState.IsGameplayRunning == false)
+            return;
+
         if (_config == null || _config.ProjectilePrefab == null)
             return;
 

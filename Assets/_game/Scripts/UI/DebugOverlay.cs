@@ -16,6 +16,7 @@ public class DebugOverlay : MonoBehaviour
     [SerializeField] private bool _isVisibleInAwake;
 
     private IMoneyService _money;
+    private ILevelStateProvider _levelState;
     
     private PlayerRunner _player;
     private Health _health;
@@ -23,12 +24,13 @@ public class DebugOverlay : MonoBehaviour
     private float _nextRefreshTime;
 
     [Inject]
-    private void Construct(PlayerRunner player, Health health, Weapon weapon, IMoneyService money)
+    private void Construct(PlayerRunner player, Health health, Weapon weapon, IMoneyService money, ILevelStateProvider levelState)
     {
         _player = player;
         _health = health;
         _weapon = weapon;
         _money = money;
+        _levelState = levelState;
     }
 
     private void Awake()
@@ -79,6 +81,7 @@ public class DebugOverlay : MonoBehaviour
         _builder.AppendLine($"HP: {FormatHealth()}");
         _builder.AppendLine($"Fire rate: {FormatFireRate()}");
         _builder.AppendLine($"Money: {FormatMoney()}");
+        _builder.AppendLine($"Level state: {FormatLevelState()}");
         _builder.AppendLine($"Weapon: {FormatWeapon()}");
         _builder.AppendLine($"Position: {FormatPosition(_player.transform.position)}");
 
@@ -108,5 +111,10 @@ public class DebugOverlay : MonoBehaviour
     private string FormatMoney()
     {
         return _money.Balance.ToString();
+    }
+
+    private string FormatLevelState()
+    {
+        return _levelState != null ? _levelState.State.ToString() : "not found";
     }
 }
