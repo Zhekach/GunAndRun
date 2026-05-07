@@ -6113,6 +6113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519002981755283805, guid: 7c9cb099cfaa5ed4fadee709a9200e1d, type: 3}
+      propertyPath: _maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2632862939581335634, guid: 7c9cb099cfaa5ed4fadee709a9200e1d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6636,6 +6640,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestructibleObstacleTest1
       objectReference: {fileID: 0}
+    - target: {fileID: 8990319200271128848, guid: a49cba1d77a46df41ad79d5fff12374d, type: 3}
+      propertyPath: _dropPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8990319200271128848, guid: a49cba1d77a46df41ad79d5fff12374d, type: 3}
+      propertyPath: _dropPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8200000000000000007, guid: d2c77bf9bdbf4e449561a25b789b908f, type: 3}
+    - target: {fileID: 8990319200271128848, guid: a49cba1d77a46df41ad79d5fff12374d, type: 3}
+      propertyPath: _dropPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 8200000000000000007, guid: d2c77bf9bdbf4e449561a25b789b908f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
