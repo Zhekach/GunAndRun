@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 8001000000000000009, guid: c515e7ae19524ec296d5e7207a4f5936, type: 3}
-  _damage: 10
-  _shotsPerSecond: 0.5
+  _damage: 1
+  _shotsPerSecond: 2
   _projectileSpeed: 18
-  _projectileDistance: 5
+  _projectileDistance: 8
   _projectilesPerShot: 1
   _spreadAngle: 0

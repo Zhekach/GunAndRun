@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2461f81a84a24b50a3d41878dae37ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
+  _maxHealth: 100
   _destroyOnDeath: 1
 --- !u!114 &1510483803217010870
 MonoBehaviour:
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c8378698d044c590cc9dcfed9dc69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: cf57da1525a94373a1b86a398af2aaf5, type: 2}
+  _config: {fileID: 11400000, guid: 82f4e94dab2946488c24f94576edf293, type: 2}
   _shootPoint: {fileID: 0}
   _fireRateMultiplier: 1
 --- !u!114 &2713386056150723882
