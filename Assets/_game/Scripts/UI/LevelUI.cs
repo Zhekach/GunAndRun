@@ -80,7 +80,7 @@ public class LevelUI : MonoBehaviour, IStartable, IDisposable
         SetActive(_defeatPanel, state == LevelState.Defeat);
 
         if (_pauseButton != null)
-            _pauseButton.gameObject.SetActive(state == LevelState.Playing);
+            _pauseButton.gameObject.SetActive(state == LevelState.Playing || state == LevelState.BonusZone);
 
         foreach (var button in _nextLevelButtons)
         {

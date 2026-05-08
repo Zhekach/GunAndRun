@@ -5,7 +5,7 @@ public class LevelStateMachine : ILevelStateMachine
     public event Action<LevelState> StateChanged;
 
     public LevelState State { get; private set; } = LevelState.Preparation;
-    public bool IsGameplayRunning => State == LevelState.Playing;
+    public bool IsGameplayRunning => State == LevelState.Playing || State == LevelState.BonusZone;
 
     public void Enter(LevelState state)
     {
@@ -27,10 +27,13 @@ public class LevelStateMachine : ILevelStateMachine
                 return to == LevelState.Playing;
 
             case LevelState.Playing:
-                return to == LevelState.Paused || to == LevelState.Victory || to == LevelState.Defeat;
+                return to == LevelState.Paused || to == LevelState.BonusZone || to == LevelState.Victory || to == LevelState.Defeat;
+
+            case LevelState.BonusZone:
+                return to == LevelState.Paused || to == LevelState.Victory;
 
             case LevelState.Paused:
-                return to == LevelState.Playing;
+                return to == LevelState.Playing || to == LevelState.BonusZone;
 
             case LevelState.Victory:
             case LevelState.Defeat:

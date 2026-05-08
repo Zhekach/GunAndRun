@@ -10,6 +10,7 @@ public class LevelFlowController : ILevelFlow, IStartable, IDisposable
     private readonly ILevelRewardService _levelReward;
     private readonly LevelFlowSettings _settings;
     private readonly Health _playerHealth;
+    private LevelState _stateBeforePause = LevelState.Playing;
 
     public LevelFlowController(
         ILevelStateMachine stateMachine,
@@ -65,14 +66,17 @@ public class LevelFlowController : ILevelFlow, IStartable, IDisposable
 
     public void Pause()
     {
-        if (_stateMachine.State == LevelState.Playing)
-            _stateMachine.Enter(LevelState.Paused);
+        if (_stateMachine.IsGameplayRunning == false)
+            return;
+
+        _stateBeforePause = _stateMachine.State;
+        _stateMachine.Enter(LevelState.Paused);
     }
 
     public void Resume()
     {
         if (_stateMachine.State == LevelState.Paused)
-            _stateMachine.Enter(LevelState.Playing);
+            _stateMachine.Enter(_stateBeforePause);
     }
 
     public void Restart()
@@ -96,18 +100,38 @@ public class LevelFlowController : ILevelFlow, IStartable, IDisposable
         _sceneLoader.LoadScene(_settings.NextLevelSceneName);
     }
 
-    public void CompleteLevel()
+    public void EnterBonusZone()
     {
         if (_stateMachine.State != LevelState.Playing)
             return;
 
         _levelReward.GrantCompletionReward(_settings.LevelId);
         _levelProgress.MarkCompleted(_settings.LevelId);
+        _stateMachine.Enter(LevelState.BonusZone);
+    }
+
+    public void CompleteLevel()
+    {
+        if (_stateMachine.State != LevelState.Playing && _stateMachine.State != LevelState.BonusZone)
+            return;
+
+        if (_stateMachine.State == LevelState.Playing)
+        {
+            _levelReward.GrantCompletionReward(_settings.LevelId);
+            _levelProgress.MarkCompleted(_settings.LevelId);
+        }
+
         _stateMachine.Enter(LevelState.Victory);
     }
 
     public void FailLevel()
     {
+        if (_stateMachine.State == LevelState.BonusZone)
+        {
+            CompleteLevel();
+            return;
+        }
+
         if (_stateMachine.State != LevelState.Playing)
             return;
 

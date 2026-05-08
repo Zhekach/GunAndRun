@@ -8,6 +8,7 @@ public interface ILevelFlow : ILevelStateProvider
     void Restart();
     void ExitToMainMenu();
     void GoToNextLevel();
+    void EnterBonusZone();
     void CompleteLevel();
     void FailLevel();
 }
