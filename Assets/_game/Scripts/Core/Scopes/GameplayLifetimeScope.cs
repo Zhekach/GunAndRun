@@ -13,6 +13,9 @@ public class GameplayLifetimeScope : LifetimeScope
     [SerializeField] private Health _playerHealth;
     [SerializeField] private Weapon _playerWeapon;
     
+    [SerializeField] private LevelFinishTrigger _levelFinishTrigger;
+    [SerializeField] private LevelBonusZoneTrigger _levelBonusZoneTrigger;
+    
     [Header("Level settings")]
     [SerializeField] private string _levelId = Constants.GameSceneName;
     [SerializeField] private string _nextLevelSceneName;
@@ -32,6 +35,8 @@ public class GameplayLifetimeScope : LifetimeScope
         builder.RegisterComponent(_player);
         builder.RegisterComponent(_playerHealth);
         builder.RegisterComponent(_playerWeapon);
+        builder.RegisterComponent(_levelFinishTrigger);
+        builder.RegisterComponent(_levelBonusZoneTrigger);
         builder.RegisterBuildCallback(InjectSceneComponents);
     }
 
@@ -43,10 +48,10 @@ public class GameplayLifetimeScope : LifetimeScope
         for (int i = 0; i < dropOnDeathComponents.Length; i++)
             resolver.Inject(dropOnDeathComponents[i]);
 
-        LevelFinishTrigger[] finishTriggers = FindObjectsOfType<LevelFinishTrigger>(true);
+        //LevelFinishTrigger[] finishTriggers = FindObjectsOfType<LevelFinishTrigger>(true);
 
-        for (int i = 0; i < finishTriggers.Length; i++)
-            resolver.Inject(finishTriggers[i]);
+        //for (int i = 0; i < finishTriggers.Length; i++)
+        //    resolver.Inject(finishTriggers[i]);
 
         StatusEffectReceiver[] statusEffectReceivers = FindObjectsOfType<StatusEffectReceiver>(true);
 
